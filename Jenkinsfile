@@ -9,7 +9,7 @@ node{
     
     stage('Email notification') {
         mail bcc: '', body: '''Hi Welcome to Jenkins
-        Thanks
-        Alex''', cc: '', from: '', replyTo: '', subject: 'Jenkins job', to: 'alexandre.chaumet@gadz.org'
+Thanks
+Alex''', cc: '', from: '', replyTo: '', subject: 'Jenkins job', to: 'alexandre.chaumet@gadz.org'
     }
 }
