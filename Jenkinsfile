@@ -12,4 +12,8 @@ node{
 Thanks
 Alex''', cc: '', from: '', replyTo: '', subject: 'Jenkins job', to: 'alexandre.chaumet@gadz.org'
     }
+    
+    stage('Slack notification') {
+        slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#jenkins-pipeline-demo', color: 'good', message: 'Welcome to Jenkins', teamDomain: 'Latence132', tokenCredentialId: 'slack-demo'
+    }
 }
