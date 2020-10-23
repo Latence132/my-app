@@ -1,6 +1,7 @@
 node{
     stage('SCM checkout'){
         git 'https://github.com/Latence132/my-app'
+        git checkout train
     }
     
     stage('Compile package'){
