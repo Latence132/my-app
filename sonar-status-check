@@ -1,0 +1,36 @@
+node{
+    stage('SCM checkout'){
+        git 'https://github.com/Latence132/my-app'
+    }
+    
+    stage('Compile package'){
+        sh 'mvn clean package'
+    }
+
+    stage('SOnarQube Analysis'){
+        withSonarQubeEnv('sonarqube') {
+            sh 'mvn sonar:sonar'
+        }
+    }
+    
+    stage("Sonar Status Quality Gate"){
+          timeout(time: 1, unit: 'HOURS') {
+              def qg = waitForQualityGate()
+              if (qg.status != 'OK') {
+                slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#jenkins-pipeline-demo', color: 'danger', message: 'SonarQube Analysys Failed', teamDomain: 'Latence132', tokenCredentialId: 'slack-demo'
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+              }
+          }
+      }  
+    /*
+    stage('Email notification') {
+        mail bcc: '', body: '''Hi Welcome to Jenkins
+Thanks
+Alex''', cc: '', from: '', replyTo: '', subject: 'Jenkins job', to: 'alexandre.chaumet@gadz.org'
+    }
+    
+    stage('Slack notification') {
+        slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#jenkins-pipeline-demo', color: 'good', message: 'Welcome to Jenkins', teamDomain: 'Latence132', tokenCredentialId: 'slack-demo'
+    }
+    */
+}
