@@ -15,7 +15,7 @@ node{
     
     stage("Sonar Status Quality Gate"){
           timeout(time: 1, unit: 'HOURS') {
-              def qg = waitForQualityGate(webhookSecretId: '96dd25fae27e8a0042030bdaa2c33e0b4bba2112')
+              def qg = waitForQualityGate()
               if (qg.status != 'OK') {
                 slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#jenkins-pipeline-demo', color: 'danger', message: 'SonarQube Analysys Failed', teamDomain: 'Latence132', tokenCredentialId: 'slack-demo'
                   error "Pipeline aborted due to quality gate failure: ${qg.status}"
