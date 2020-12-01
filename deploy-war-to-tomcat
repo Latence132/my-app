@@ -7,12 +7,13 @@ node{
     stage('Compile package'){
         sh 'mvn clean package'
     }
-
+    /*
     stage('SOnarQube Analysis'){
         withSonarQubeEnv('sonarqube') {
             sh 'mvn sonar:sonar'
         }
     }
+    */
     
     sshagent('Deplot to Tomcat') {
     sh 'scp -o StrictHostKeyChecking=no target/*war ec2-user@15.237.110.35:/opt/tomcat/webapps'
