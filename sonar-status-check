@@ -12,7 +12,7 @@ node{
             sh 'mvn sonar:sonar'
         }
     }
-    
+    sleep 10
     stage("Sonar Status Quality Gate"){
           timeout(time: 1, unit: 'HOURS') {
               def qg = waitForQualityGate()
