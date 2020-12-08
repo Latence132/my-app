@@ -18,7 +18,7 @@ node{
             sshagent(['tomcat-dev']) {
                 sh 'scp -o StrictHostKeyChecking=no target/*.war  ec2-user@15.188.90.122:/home/ec2-user'
                 sh 'chown -R tomcat:tomcat   myweb-*-SNAPSHOT.war'
-                sh 'scp -o StrictHostKeyChecking=no ec2-user@15.188.90.122 'cp -r /home/ec2-user/myweb-*-SNAPSHOT.war /usr/share/apache-tomcat-9.0.39/webapps'
+                sh 'scp -o StrictHostKeyChecking=no ec2-user@15.188.90.122 'cp -r /home/ec2-user/myweb*.war /usr/share/apache-tomcat-9.0.39/webapps'
            
                 /* sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@15.188.90.122:/usr/share/apache-tomcat-9.0.39/webapps' */
             }
