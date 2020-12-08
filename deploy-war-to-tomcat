@@ -19,9 +19,6 @@ node{
             sshagent(['tomcat-dev']) {
                 sh 'scp -o StrictHostKeyChecking=no target/*.war  ec2-user@15.188.90.122:/home/ec2-user'
                 sh 'whoami'
-                sh 'chmod +r myweb*.war'
-                sh 'chmod +w  myweb*.war'
-                sh 'chmod +x  myweb*.war'
                 sh 'cp /home/ec2-user/myweb*.war /usr/share/apache-tomcat-9.0.39/webapps'
             }
     }
