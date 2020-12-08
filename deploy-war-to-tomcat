@@ -13,11 +13,11 @@ node{
             sh 'mvn sonar:sonar'
         }
     }
+                    sh 'sudo chown -R tomcat:tomcat   myweb*SNAPSHOT.war'
     */
     stage('Deploy to Tomcat'){
             sshagent(['tomcat-dev']) {
                 sh 'scp -o StrictHostKeyChecking=no target/*.war  ec2-user@15.188.90.122:/home/ec2-user'
-                sh 'sudo chown -R tomcat:tomcat   myweb*SNAPSHOT.war'
                 sh 'scp -o StrictHostKeyChecking=no ec2-user@15.188.90.122 cp -r /home/ec2-user/myweb*.war /usr/share/apache-tomcat-9.0.39/webapps'
            
 
