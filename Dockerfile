@@ -1,2 +1,2 @@
-FROM tomcat:9.0
-COPY target/*.war /usr/share/apache-tomcat-9.0.39/webapps/dockeransible.war
+FROM tomcat:8
+COPY target/*.war /usr/local/tomcat/webapps/myweb.war
